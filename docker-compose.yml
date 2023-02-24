@@ -11,6 +11,6 @@ services:
     environment:
       - "MESHPING_PEERS=mccoy-pauly.goos.house:9922"
     volumes:
-      - "/dev/null:/opt/meshping/db:rw"
+      - "/tmp/meshping:/opt/meshping/db:rw"
     ports:
       - "9922:9922"
