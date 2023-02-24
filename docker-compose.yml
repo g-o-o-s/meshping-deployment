@@ -1,0 +1,16 @@
+version: '2.4'
+services:
+  meshping:
+    # :latest as of 2023/02/24
+    # we pin the shasum as this is a rather active project
+    # and subject to big changes that should be manually verified
+    image: "docker.io/svedrin/meshping@sha256:95b4842be9b2cabeed4094749f112f8444f86e974f232691cef542be1f495696"
+    container_name: "meshping"
+    read_only: true
+    restart: "unless-stopped"
+    environment:
+      - MESHPING_PEERS="mccoy-pauly.goos.house:9922"
+    # volumes:
+    #   - "./data/meshping:/opt/meshping/db:rw"
+    ports:
+      - "9922:9922"
