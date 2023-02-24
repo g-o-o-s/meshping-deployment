@@ -5,5 +5,10 @@ global:
 scrape_configs:
   - job_name: meshping
     static_configs:
-      - targets: ['meshping:9922']
+      - targets: [
+          'meshping:9922',
+          'node01.ping.thehonk.cloud:9922',
+          'node02.ping.thehonk.cloud:9922',
+          'node03.ping.thehonk.cloud:9922',
+        ]
     metrics_path: /metrics

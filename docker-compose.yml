@@ -8,6 +8,8 @@ services:
     container_name: "meshping"
     read_only: true
     restart: "unless-stopped"
+    environment:
+      - "MESHPING_PEERS=node01.ping.thehonk.cloud:9922,node02.ping.thehonk.cloud:9922,node03.ping.thehonk.cloud:9922"
     volumes:
       - "./data/meshping:/opt/meshping/db:rw"
     ports:
@@ -31,7 +33,3 @@ services:
       - "./data/grafana:/var/lib/grafana:rw"
     ports:
       - "3000:3000"
-
-networks:
-  meshping-internal:
-    driver: bridge
