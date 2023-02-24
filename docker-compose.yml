@@ -1,0 +1,37 @@
+version: '2.4'
+services:
+  meshping:
+    # :latest as of 2023/02/24
+    # we pin the shasum as this is a rather active project
+    # and subject to big changes that should be manually verified
+    image: "docker.io/svedrin/meshping@sha256:95b4842be9b2cabeed4094749f112f8444f86e974f232691cef542be1f495696"
+    container_name: "meshping"
+    read_only: true
+    restart: "unless-stopped"
+    volumes:
+      - "./data/meshping:/opt/meshping/db:rw"
+    ports:
+      - "9922:9922"
+
+  prometheus:
+    image: "docker.io/bitnami/prometheus:2"
+    container_name: "meshping-prometheus"
+    read_only: true
+    restart: "unless-stopped"
+    volumes:
+      - "./data/prometheus:/opt/bitnami/prometheus/data:rw"
+      - "./conf/prometheus/prometheus.yml:/opt/bitnami/prometheus/conf/prometheus.yml:ro"
+
+  grafana:
+    image: "docker.io/grafana/grafana-oss:9.3.6"
+    container_name: "meshping-grafana"
+    read_only: true
+    restart: "unless-stopped"
+    volumes:
+      - "./data/grafana:/var/lib/grafana:rw"
+    ports:
+      - "3000:3000"
+
+networks:
+  meshping-internal:
+    driver: bridge
