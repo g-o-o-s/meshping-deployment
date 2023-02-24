@@ -9,7 +9,7 @@ services:
     read_only: true
     restart: "unless-stopped"
     environment:
-      - MESHPING_PEERS="mccoy-pauly.goos.house:9922"
+      - MESHPING_PEERS="http://mccoy-pauly.goos.house:9922"
     # volumes:
     #   - "./data/meshping:/opt/meshping/db:rw"
     ports:
