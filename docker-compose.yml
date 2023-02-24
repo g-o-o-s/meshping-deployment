@@ -10,7 +10,7 @@ services:
     restart: "unless-stopped"
     environment:
       - "MESHPING_PEERS=mccoy-pauly.goos.house:9922"
-    # volumes:
-    #   - "./data/meshping:/opt/meshping/db:rw"
+    volumes:
+      - "/dev/null:/opt/meshping/db:rw"
     ports:
       - "9922:9922"
